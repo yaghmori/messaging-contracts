@@ -1,0 +1,63 @@
+{
+  "name": "@platform/messaging-contracts",
+  "version": "0.1.0",
+  "description": "Ports, Kafka topics, TCP message patterns, and Zod DTOs for platform email, storage, and notification services",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./nest": {
+      "types": "./dist/nest/index.d.ts",
+      "default": "./dist/nest/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check-types": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/microservices": "^11.0.0",
+    "express": ">=4.18.0",
+    "rxjs": "^7.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjs/common": { "optional": true },
+    "@nestjs/core": { "optional": true },
+    "@nestjs/microservices": { "optional": true },
+    "express": { "optional": true },
+    "rxjs": { "optional": true }
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/microservices": "^11.0.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.15.3",
+    "express": "^4.18.2",
+    "rxjs": "^7.8.0",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@10.0.0"
+}

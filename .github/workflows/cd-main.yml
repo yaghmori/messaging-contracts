@@ -1,0 +1,50 @@
+# Push to `main` → build and publish @platform/messaging-contracts to npmjs.
+# Requires repo secret NPM_TOKEN (Automation token with publish on @platform).
+name: CD (main)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+          scope: "@platform"
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+      - run: pnpm run check-types
+
+      - name: Publish (skip if version already on npm)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          NAME="$(node -p "require('./package.json').name")"
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "${NAME}@${VERSION}" version >/dev/null 2>&1; then
+            echo "Already published: ${NAME}@${VERSION} — bump version to publish again."
+            exit 0
+          fi
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "::error::Missing NPM_TOKEN secret. Create an npm Automation token and add it as Actions secret NPM_TOKEN."
+            exit 1
+          fi
+          pnpm publish --access public --no-git-checks

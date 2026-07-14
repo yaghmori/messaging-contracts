@@ -16,6 +16,10 @@ Shared **ports**, **Kafka topics**, **TCP message patterns**, and **Zod DTOs** f
 pnpm add @platform/messaging-contracts zod
 ```
 
+Published from **`main`** to [npmjs.com](https://www.npmjs.com/package/@platform/messaging-contracts) via **CD (main)**.  
+Requires npm org **`@platform`** + repo secret **`NPM_TOKEN`** (Automation token).  
+**`dev`** runs **CI (dev)** only (build/typecheck, no publish). Bump `version` in `package.json` before merging to `main` when you want a new release.
+
 Optional Nest helpers (interceptors / middleware / RPC filters):
 
 ```ts

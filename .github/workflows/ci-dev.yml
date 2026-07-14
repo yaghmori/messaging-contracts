@@ -1,10 +1,9 @@
-name: CI
+# Push to `dev` → install, build, typecheck (no publish).
+name: CI (dev)
 
 on:
   push:
-    branches: [main, dev]
-  pull_request:
-    branches: [main, dev]
+    branches: [dev]
   workflow_dispatch:
 
 permissions:
@@ -12,12 +11,11 @@ permissions:
 
 jobs:
   build:
-    name: Install and build
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # Use package.json packageManager field only (avoid version mismatch)
       - uses: pnpm/action-setup@v4
         with:
           version: 10.0.0
@@ -30,4 +28,3 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
       - run: pnpm run check-types
-        # prepare already builds; check-types with noEmit for certainty

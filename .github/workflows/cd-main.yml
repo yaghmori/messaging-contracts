@@ -1,5 +1,5 @@
-# Push to `main` → build and publish @platform/messaging-contracts to npmjs.
-# Requires repo secret NPM_TOKEN (Automation token with publish on @platform).
+# Push to `main` → build and publish @yaghmori/messaging-contracts to npmjs.
+# Requires repo secret NPM_TOKEN (Automation token with publish for @yaghmori).
 name: CD (main)
 
 on:
@@ -26,7 +26,7 @@ jobs:
           node-version: "22"
           cache: pnpm
           registry-url: https://registry.npmjs.org
-          scope: "@platform"
+          scope: "@yaghmori"
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build

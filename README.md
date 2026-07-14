@@ -1,4 +1,4 @@
-# @platform/messaging-contracts
+# @yaghmori/messaging-contracts
 
 ![stable](https://img.shields.io/badge/status-stable-brightgreen)
 
@@ -13,17 +13,17 @@ Shared **ports**, **Kafka topics**, **TCP message patterns**, and **Zod DTOs** f
 ## Install
 
 ```bash
-pnpm add @platform/messaging-contracts zod
+pnpm add @yaghmori/messaging-contracts zod
 ```
 
-Published from **`main`** to [npmjs.com](https://www.npmjs.com/package/@platform/messaging-contracts) via **CD (main)**.  
-Requires npm org **`@platform`** + repo secret **`NPM_TOKEN`** (Automation token).  
+Published from **`main`** to [npmjs.com](https://www.npmjs.com/package/@yaghmori/messaging-contracts) via **CD (main)**.  
+Requires npm user **`yaghmori`** + repo secret **`NPM_TOKEN`** (Automation / CI token with 2FA bypass).  
 **`dev`** runs **CI (dev)** only (build/typecheck, no publish). Bump `version` in `package.json` before merging to `main` when you want a new release.
 
 Optional Nest helpers (interceptors / middleware / RPC filters):
 
 ```ts
-import { RequestContextMiddleware, RpcLoggingInterceptor } from '@platform/messaging-contracts/nest';
+import { RequestContextMiddleware, RpcLoggingInterceptor } from '@yaghmori/messaging-contracts/nest';
 ```
 
 ## Integrate in 10 minutes
@@ -36,7 +36,7 @@ import {
   KAFKA_TOPICS,
   MESSAGE_PATTERNS,
   sendEmailRequestSchema,
-} from '@platform/messaging-contracts';
+} from '@yaghmori/messaging-contracts';
 ```
 
 2. Publish email send requests on `KAFKA_TOPICS.EMAIL_SEND_REQUESTED` with payload matching `EmailSendRequestedPayloadSchema`, **or** call TCP `MESSAGE_PATTERNS.EMAIL.SEND_EMAIL` on port `SERVICE_PORTS.EMAIL_SERVICE_TCP`.

@@ -10,5 +10,5 @@ export * from './notification.contracts';
 export * from './health.contracts';
 export * from './event-schemas';
 export * from './zod-utils';
-/** Nest helpers also available via `@platform/messaging-contracts/nest` */
+/** Nest helpers also available via `@yaghmori/messaging-contracts/nest` */
 export * from './nest';

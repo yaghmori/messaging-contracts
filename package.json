@@ -1,5 +1,5 @@
 {
-  "name": "@platform/messaging-contracts",
+  "name": "@yaghmori/messaging-contracts",
   "version": "0.1.0",
   "description": "Ports, Kafka topics, TCP message patterns, and Zod DTOs for platform email, storage, and notification services",
   "license": "MIT",

@@ -2,23 +2,20 @@
 
 ![stable](https://img.shields.io/badge/status-stable-brightgreen)
 
-Shared **ports**, **Kafka topics**, **TCP message patterns**, and **Zod DTOs** for public platform services:
+**Shared** Zod helpers / cross-cutting schemas. Prefer **per-service client SDKs** for app integration:
 
-| Service | TCP port | Role |
-|---------|----------|------|
-| email-service | **4003** | Transactional email (template key + data) |
-| storage-service | **4002** | Platform object storage (avatars, docs, images) |
-| notification-service | **4004** | In-app inbox + prefs + fan-out (Phase B) |
+| Service | npm client | Docker |
+|---------|------------|--------|
+| email | [`@yaghmori/email-service`](https://www.npmjs.com/package/@yaghmori/email-service) | `ghcr.io/yaghmori/email-service` |
+| storage | [`@yaghmori/storage-service`](https://www.npmjs.com/package/@yaghmori/storage-service) | `ghcr.io/yaghmori/storage-service` |
 
-## Install
+Those packages ship ports, TCP patterns, Kafka topics, and Nest helpers so consumers never hardcode event names.
+
+## Install (shared layer)
 
 ```bash
 pnpm add @yaghmori/messaging-contracts zod
 ```
-
-Published from **`main`** to [npmjs.com](https://www.npmjs.com/package/@yaghmori/messaging-contracts) via **CD (main)**.  
-Requires npm user **`yaghmori`** + repo secret **`NPM_TOKEN`** (Automation / CI token with 2FA bypass).  
-**`dev`** runs **CI (dev)** only (build/typecheck, no publish). Bump `version` in `package.json` before merging to `main` when you want a new release.
 
 Optional Nest helpers (interceptors / middleware / RPC filters):
 
